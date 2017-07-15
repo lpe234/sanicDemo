@@ -3,6 +3,7 @@ import socket
 
 from sanic import Sanic
 from sanic.response import json
+from sanic.log import log
 
 import settings
 
@@ -12,18 +13,17 @@ from api_v2 import bp_v2
 __author__ = 'lpe234'
 
 
-app = Sanic()
+app = Sanic(name='SanicDemo')
 
 # load config by hostname, and check config.
 host_name = socket.gethostname().capitalize().replace('.', '_').replace('-', '')
-app.config.from_object(getattr(settings, '{}sConfig'.format(host_name), settings.Config))
+app.config.from_object(getattr(settings, '{}Config'.format(host_name), settings.Config))
 if app.config.get('CONFIG_NAME'):
-    # FIXME: use log
-    print('load config from: {}'.format(app.config.get('CONFIG_NAME')))
+    info_msg = 'load config from: {}'.format(app.config.get('CONFIG_NAME'))
+    log.info(info_msg)
 else:
-    # FIXME: use log
-    print('config may be wrong, please check with host_name: {}'.format(host_name))
-    exit()
+    err_msg = 'Config Wrong, Please Check With host_name: {}'.format(host_name)
+    exit(err_msg)
 
 # register blueprints on the app
 app.blueprint(bp_v1, url_prefix='/v1')
