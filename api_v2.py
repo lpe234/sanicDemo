@@ -12,7 +12,7 @@ version 2 api
 bp_v2 = Blueprint('bp_v2')
 
 
-@bp_v2.route('/', methods=['GET'])
+@bp_v2.get('/')
 async def default(request):
     """
     default demo api

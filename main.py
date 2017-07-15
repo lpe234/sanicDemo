@@ -16,7 +16,7 @@ app.blueprint(bp_v1, url_prefix='/v1')
 app.blueprint(bp_v2, url_prefix='/v1')
 
 
-@app.route('/')
+@app.get('/')
 async def test(request):
     return json({
         'hello': 'world'
