@@ -2,13 +2,11 @@
 import socket
 
 from sanic import Sanic
-from sanic.response import json
 from sanic.log import log
+from sanic.response import json
 
 import settings
-
-from api_v1 import bp_v1
-from api_v2 import bp_v2
+from controller import bp_v1, bp_v2
 
 __author__ = 'lpe234'
 

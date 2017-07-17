@@ -45,3 +45,9 @@ class Lupengdemacbookpro_localConfig(DevelopConfig):
     CONFIG_NAME = 'LupengConfig'
     pass
 
+
+class BogonConfig(Lupengdemacbookpro_localConfig):
+    """
+    Bogon Fix
+    """
+    pass
